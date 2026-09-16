@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PK MART - Online Shopping</title>
+
+  <meta name="description" content="PK MART - Shop products online at great prices.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f6f7fb;
+      color: #222;
+    }
+
+    /* Header */
+    header {
+      background: #ffffff;
+      padding: 14px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #155eef;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #ff7a00;
+    }
+
+    .search {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 13px 18px;
+      border: 1px solid #ddd;
+      border-radius: 10px 0 0 10px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .search button {
+      border: none;
+      background: #155eef;
+      color: white;
+      padding: 0 22px;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header-btn {
+      border: none;
+      background: #f0f3ff;
+      padding: 11px 14px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      margin: 25px 5%;
+      min-height: 300px;
+      border-radius: 20px;
+      padding: 45px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(120deg, #155eef, #6b8cff);
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      background: white;
+      color: #155eef;
+      padding: 13px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Categories */
+    section {
+      margin: 35px 5%;
+    }
+
+    .section-title {
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 15px;
+    }
+
+    .category {
+      background: white;
+      padding: 22px 10px;
+      text-align: center;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .category:hover {
+      transform: translateY(-4px);
+    }
+
+    .category-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      transition: 0.2s;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      height: 210px;
+      background: #eef1f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .rating {
+      color: #f59e0b;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .old-price {
+      color: #888;
+      text-decoration: line-through;
+      font-size: 13px;
+      margin-left: 7px;
+    }
+
+    .discount {
+      color: #0a9f45;
+      font-size: 13px;
+      margin-left: 7px;
+    }
+
+    .cart-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 11px;
+      border: none;
+      border-radius: 9px;
+      background: #ff7a00;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: white;
+      margin-top: 50px;
+      padding: 35px 5%;
+      text-align: center;
+    }
+
+    footer h2 {
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      color: #cbd5e1;
+      margin-top: 8px;
+    }
+
+    /* Mobile */
+    @media (max-width: 800px) {
+
+      header {
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .search {
+        order: 3;
+        flex-basis: 100%;
+      }
+
+      .hero {
+        margin: 15px 3%;
+        padding: 30px 22px;
+        min-height: 280px;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      section {
+        margin: 28px 3%;
+      }
+
+      .categories {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .product-image {
+        height: 160px;
+        font-size: 50px;
+      }
+
+      .product-info {
+        padding: 11px;
+      }
+    }
+
+    @media (max-width: 420px) {
+
+      .categories {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .category {
+        padding: 15px 5px;
+        font-size: 12px;
+      }
+
+      .category-icon {
+        font-size: 27px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+
+    <div class="logo">
+      PK <span>MART</span>
+    </div>
+
+    <div class="search">
+      <input
+        type="text"
+        placeholder="Search products, brands and categories..."
+      >
+      <button>Search</button>
+    </div>
+
+    <div class="header-buttons">
+      <button class="header-btn">👤 Login</button>
+      <button class="header-btn">🛒 Cart</button>
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+  <div class="hero">
+
+    <div class="hero-content">
+
+      <h1>Welcome to PK MART</h1>
+
+      <p>
+        Shop smart. Shop easy.  
+        Discover great products at amazing prices.
+      </p>
+
+      <a href="#products" class="shop-btn">
+        Shop Now
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- CATEGORIES -->
+  <section>
+
+    <h2 class="section-title">
+      Shop by Category
+    </h2>
+
+    <div class="categories">
+
+      <div class="category">
+        <div class="category-icon">📱</div>
+        Electronics
+      </div>
+
+      <div class="category">
+        <div class="category-icon">👕</div>
+        Fashion
+      </div>
+
+      <div class="category">
+        <div class="category-icon">🏠</div>
+        Home
+      </div>
+
+      <div class="category">
+        <div class="category-icon">💄</div>
+        Beauty
+      </div>
+
+      <div class="category">
+        <div class="category-icon">👟</div>
+        Footwear
+      </div>
+
+      <div class="category">
+        <div class="category-icon">🎧</div>
+        Accessories
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCTS -->
+  <section id="products">
+
+    <h2 class="section-title">
+      🔥 Deals of the Day
+    </h2>
+
+    <div class="products">
+
+      <div class="product">
+
+        <div class="product-image">
+          🎧
+        </div>
+
+        <div class="product-info">
+
+          <h3>Wireless Bluetooth Headphones</h3>
+
+          <div class="rating">
+            ⭐⭐⭐⭐⭐ (4.5)
+          </div>
+
+          <div>
+            <span class="price">₹499</span>
+            <span class="old-price">₹999</span>
+            <span class="discount">50% OFF</span>
+          </div>
+
+          <button class="cart-btn">
+            🛒 Add to Cart
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+          ⌚
+        </div>
+
+        <div class="product-info">
+
+          <h3>Smart Watch</h3>
+
+          <div class="rating">
+            ⭐⭐⭐⭐☆ (4.2)
+          </div>
+
+          <div>
+            <span class="price">₹799</span>
+            <span class="old-price">₹1,499</span>
+            <span class="discount">47% OFF</span>
+          </div>
+
+          <button class="cart-btn">
+            🛒 Add to Cart
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+          👟
+        </div>
+
+        <div class="product-info">
+
+          <h3>Casual Sports Shoes</h3>
+
+          <div class="rating">
+            ⭐⭐⭐⭐⭐ (4.6)
+          </div>
+
+          <div>
+            <span class="price">₹699</span>
+            <span class="old-price">₹1,299</span>
+            <span class="discount">46% OFF</span>
+          </div>
+
+          <button class="cart-btn">
+            🛒 Add to Cart
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+          🎒
+        </div>
+
+        <div class="product-info">
+
+          <h3>Premium Casual Backpack</h3>
+
+          <div class="rating">
+            ⭐⭐⭐⭐☆ (4.3)
+          </div>
+
+          <div>
+            <span class="price">₹599</span>
+            <span class="old-price">₹1,099</span>
+            <span class="discount">45% OFF</span>
+          </div>
+
+          <button class="cart-btn">
+            🛒 Add to Cart
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <h2>PK MART</h2>
+
+    <p>
+      Your trusted online shopping destination.
+    </p>
+
+    <p>
+      © 2026 PK MART. All Rights Reserved.
+    </p>
+
+  </footer>
+
+</body>
+  </html>
